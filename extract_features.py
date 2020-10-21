@@ -27,5 +27,5 @@ if __name__=="__main__":
 
     output_object = {"ids": soundsDB.get_ids(), "data": data, "labels": soundsDB.get_labels()}
 
-    pickle.dump( output_object, open( "".join([args.output,".pickle"]) , "wb" ) )
+    pickle.dump( output_object, open( args.output , "wb" ) )
 
