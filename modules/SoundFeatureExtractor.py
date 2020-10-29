@@ -1,6 +1,14 @@
 import librosa
 import numpy as np
 
+def flatten(lis):
+    new_list = list()
+    for item in lis:
+        if isinstance(item, np.ndarray):
+            new_list = new_list + list(item)
+        else:
+            new_list.append(item)
+    return new_list
 
 class SoundFeatureExtractor():
 
@@ -47,6 +55,9 @@ class SoundFeatureExtractor():
             result_sum[mfcc_i] = mfccs[mfcc_i].sum()
 
         return {"avg":result_avg, "sum":result_sum}
-    
+
+    def flat_all_features(self, features, metric="avg"):
+        flat_features = flatten([metric_values[metric] for metric_name, metric_values in features.items()])
+        return flat_features
 
 
